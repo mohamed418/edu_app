@@ -1,8 +1,14 @@
+import 'package:Leran/modules/flutter/courses/api.dart';
+import 'package:Leran/modules/flutter/courses/dart_oop.dart';
+import 'package:Leran/modules/flutter/courses/flutter_basics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../layout/bloc/cubit.dart';
 import '../../layout/bloc/states.dart';
 import '../../models/components.dart';
+import 'courses/animation.dart';
+import 'courses/firebase.dart';
+import 'courses/state_management.dart';
 
 class FlutterStepsScreen extends StatelessWidget {
   const FlutterStepsScreen({Key? key}) : super(key: key);
@@ -37,22 +43,75 @@ class FlutterStepsScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 50),
                   Row(
+                    children: [
+                      shadeMask(
+                        'one click',
+                        const TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      Text(
+                        ' for recommended courses',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.purpleAccent,
+                        ),
+
+                      )
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      shadeMask(
+                        'double click',
+                        const TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      Text(
+                        ' when finishing',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.purpleAccent,
+                        ),
+
+                      )
+                    ],
+                  ),
+                  const SizedBox(height: 30),
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Step_item(
-                        txt1: 'Flutter \nBasics',
-                        color: LearnCubit.get(context).color1,
+                        txt1: 'Dart & OOP',
+                        color: LearnCubit
+                            .get(context)
+                            .color1,
                         function: () {
+                          Navigator.of(context).push(
+                              MaterialPageRoute(builder: (context) => Dart()));
+                        },
+                        context: context,
+                        doublePress: () {
                           LearnCubit.get(context)
                               .submit(track: topic3, points: 10);
                           LearnCubit.get(context).ch1();
                         },
-                        context: context,
                       ),
                       Step_item(
-                        txt1: 'Animation',
-                        color: LearnCubit.get(context).color2,
+                        txt1: 'Flutter \n UI',
+                        color: LearnCubit
+                            .get(context)
+                            .color2,
                         function: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => FlutterBasics()));
+                        },
+                        doublePress: () {
                           LearnCubit.get(context)
                               .submit(track: topic3, points: 10);
                           LearnCubit.get(context).ch2();
@@ -66,9 +125,15 @@ class FlutterStepsScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Step_item(
-                        txt1: 'State \nManagement',
-                        color: LearnCubit.get(context).color3,
+                        txt1: 'Animation',
+                        color: LearnCubit
+                            .get(context)
+                            .color3,
                         function: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => AnimationCourse()));
+                        },
+                        doublePress: () {
                           LearnCubit.get(context)
                               .submit(track: topic3, points: 10);
                           LearnCubit.get(context).ch3();
@@ -76,9 +141,15 @@ class FlutterStepsScreen extends StatelessWidget {
                         context: context,
                       ),
                       Step_item(
-                        txt1: 'Firebase',
-                        color: LearnCubit.get(context).color4,
+                        txt1: 'State \n Management',
+                        color: LearnCubit
+                            .get(context)
+                            .color4,
                         function: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => StateManagement()));
+                        },
+                        doublePress: () {
                           LearnCubit.get(context)
                               .submit(track: topic3, points: 10);
                           LearnCubit.get(context).ch4();
@@ -92,9 +163,15 @@ class FlutterStepsScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Step_item(
-                        txt1: 'Linear algebra\nfor ML',
-                        color: LearnCubit.get(context).color5,
+                        txt1: 'Firebase',
+                        color: LearnCubit
+                            .get(context)
+                            .color5,
                         function: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => Firebase()));
+                        },
+                        doublePress: () {
                           LearnCubit.get(context)
                               .submit(track: topic3, points: 10);
                           LearnCubit.get(context).ch5();
@@ -102,9 +179,15 @@ class FlutterStepsScreen extends StatelessWidget {
                         context: context,
                       ),
                       Step_item(
-                        txt1: 'intro to \nML',
-                        color: LearnCubit.get(context).color6,
+                        txt1: 'API\'s',
+                        color: LearnCubit
+                            .get(context)
+                            .color6,
                         function: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => APICourse()));
+                        },
+                        doublePress: () {
                           LearnCubit.get(context)
                               .submit(track: topic3, points: 10);
                           LearnCubit.get(context).ch6();
@@ -117,13 +200,19 @@ class FlutterStepsScreen extends StatelessWidget {
                   Slider(
                     inactiveColor: Colors.purpleAccent,
                     thumbColor: Colors.purple,
-                    value: LearnCubit.get(context).FlutterPoints,
+                    value: LearnCubit
+                        .get(context)
+                        .FlutterPoints,
                     max: 60,
                     divisions: 6,
-                    label: '${LearnCubit.get(context).FlutterPoints} points',
+                    label: '${LearnCubit
+                        .get(context)
+                        .FlutterPoints} points',
                     onChanged: null,
                   ),
-                  slider(context, LearnCubit.get(context).FlutterPoints),
+                  slider(context, LearnCubit
+                      .get(context)
+                      .FlutterPoints),
                   const SizedBox(height: 30),
                 ],
               ),

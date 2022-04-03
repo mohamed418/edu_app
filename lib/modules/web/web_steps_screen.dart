@@ -1,9 +1,14 @@
 // ignore_for_file: avoid_print
+import 'package:Leran/modules/web/courses/html_css.dart';
+import 'package:Leran/modules/web/courses/mongodb_express.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../layout/bloc/cubit.dart';
 import '../../layout/bloc/states.dart';
 import '../../models/components.dart';
+import 'courses/javascript.dart';
+import 'courses/nodejs.dart';
+import 'courses/react.dart';
 
 class WebStepsScreen extends StatelessWidget {
   const WebStepsScreen({Key? key}) : super(key: key);
@@ -43,25 +48,74 @@ class WebStepsScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 50),
                     Row(
+                      children: [
+                        shadeMask(
+                          'one click',
+                          const TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        Text(
+                          ' for recommended courses',
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.purpleAccent,
+                          ),
+
+                        )
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        shadeMask(
+                          'double click',
+                          const TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        Text(
+                          ' when finishing',
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.purpleAccent,
+                          ),
+
+                        )
+                      ],
+                    ),
+                    const SizedBox(height: 30),
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Step_item(
                           txt1: 'Html\n&\nCss',
                           color: LearnCubit.get(context).colorF1,
-                          function: () {
+                          doublePress: () {
                             LearnCubit.get(context)
                                 .submit(track: topic1, points: 10);
                             LearnCubit.get(context).chF1();
+                          },
+                          function: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Html_Css()));
                           },
                           context: context,
                         ),
                         Step_item(
                           txt1: 'JavaScript',
                           color: LearnCubit.get(context).colorF2,
-                          function: () {
+                          doublePress: () {
                             LearnCubit.get(context)
                                 .submit(track: topic1, points: 10);
                             LearnCubit.get(context).chF2();
+                          },
+                          function: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => JavaScript()));
                           },
                           context: context,
                         ),
@@ -74,20 +128,28 @@ class WebStepsScreen extends StatelessWidget {
                         Step_item(
                           txt1: 'React',
                           color: LearnCubit.get(context).colorF3,
-                          function: () {
+                          doublePress: () {
                             LearnCubit.get(context)
                                 .submit(track: topic1, points: 10);
                             LearnCubit.get(context).chF3();
+                          },
+                          function: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => React()));
                           },
                           context: context,
                         ),
                         Step_item(
                           txt1: 'Node js',
                           color: LearnCubit.get(context).colorF4,
-                          function: () {
+                          doublePress: () {
                             LearnCubit.get(context)
                                 .submit(track: topic1, points: 10);
                             LearnCubit.get(context).chF4();
+                          },
+                          function: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => NodeJs()));
                           },
                           context: context,
                         ),
@@ -100,20 +162,28 @@ class WebStepsScreen extends StatelessWidget {
                         Step_item(
                           txt1: 'Mongodb',
                           color: LearnCubit.get(context).colorF5,
-                          function: () {
+                          doublePress: () {
                             LearnCubit.get(context)
                                 .submit(track: topic1, points: 10);
                             LearnCubit.get(context).chF5();
+                          },
+                          function: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Mongodb_Express()));
                           },
                           context: context,
                         ),
                         Step_item(
                           txt1: 'Express',
                           color: LearnCubit.get(context).colorF6,
-                          function: () {
+                          doublePress: () {
                             LearnCubit.get(context)
                                 .submit(track: topic1, points: 10);
                             LearnCubit.get(context).chF6();
+                          },
+                          function: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Mongodb_Express()));
                           },
                           context: context,
                         ),
